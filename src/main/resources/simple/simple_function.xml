@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testfun>
+	<action name="sleepAction" class="com.dangdang.unit.keeper.action.sleep.SleepAction">
+		<param>100</param>
+	</action>
+	
+ 	
+	<testcase name="TestCase" action="sleepAction" >
+		<preparedataset>
+			<preparedata storekey="testdb">
+				<dataset>
+				    <test_table_0>
+				    	<!-- now() -/+ 10 单位是秒，理论上可以完成昨天，明天,case开始执行的时间，一直到作业结束不变化 -->
+					    <row tid0="1" cname0="[IP()]" iage0="31" last_changed_date="[null]"/>
+					    <row tid0="2" cname0="测试2" iage0="[null]" last_changed_date="[now() - 10]"/>
+					    <row tid0="3" cname0="测试3" iage0="[null]" last_changed_date="[now()]"/>
+				    </test_table_0>
+				</dataset>
+			</preparedata>			
+		</preparedataset>
+		<resultdataset>
+			<resultdata storekey="testdb">
+				<dataset>
+					<test_table_0 orderby="tid0 asc" excludedcolumn="cname0">
+					    <row tid0="1" cname0="[IP()]" iage0="31" last_changed_date="[null]"/>
+					    <row tid0="2" cname0="测试2" iage0="[null]" last_changed_date="[now()-10]"/>
+					    <row tid0="3" cname0="测试3" iage0="[null]" last_changed_date="[now()]"/>
+				    </test_table_0>
+				    <test_table_2/>
+				</dataset>
+			</resultdata>
+		</resultdataset>
+	</testcase>
+</testfun>

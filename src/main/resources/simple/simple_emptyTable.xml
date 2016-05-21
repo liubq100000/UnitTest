@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testfun>
+	<action name="sleepAction" class="com.dangdang.unit.keeper.action.sleep.SleepAction">
+		<param>1000</param>
+	</action>
+	
+   <testcase name="TestCase" action="sleepAction" >
+		<preparedataset>
+			<preparedata storekey="testdb">
+				<dataset>
+				    <test_table_0>
+					    <row tid0="1" cname0="测试1" iage0="31"/>
+					    <row tid0="2" cname0="测试2" />
+				    </test_table_0>
+				</dataset>
+			</preparedata>			
+		</preparedataset>
+		<resultdataset>
+			<resultdata storekey="testdb">
+				<dataset>
+					<test_table_0 orderby="tid0 asc" >
+					    <row tid0="1" cname0="测试1" iage0="31"/>
+					    <row tid0="2" cname0="测试2" iage0=""/>
+				    </test_table_0>
+				    <test_table_2></test_table_2>
+				</dataset>
+			</resultdata>
+		</resultdataset>
+	</testcase>
+	
+	 <testcase name="TestCase1" action="sleepAction" >
+		<preparedataset>
+			<preparedata storekey="testdb">
+				<dataset>
+				    <test_table_0>
+					    <row tid0="1" cname0="测试1" iage0="31"/>
+					    <row tid0="2" cname0="测试2" />
+				    </test_table_0>
+				</dataset>
+			</preparedata>			
+		</preparedataset>
+		<resultdataset>
+			<resultdata storekey="testdb">
+				<dataset>
+					<test_table_0 orderby="tid0 asc" >
+					    <row tid0="1" cname0="测试1" iage0="31"/>
+					    <row tid0="2" cname0="测试2" iage0=""/>
+				    </test_table_0>
+				    <test_table_2/>
+				</dataset>
+			</resultdata>
+		</resultdataset>
+	</testcase>
+</testfun>

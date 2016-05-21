@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testfun>
+	<action name="sleepAction" class="com.dangdang.unit.keeper.action.sleep.SleepAction">
+		<param>1</param>
+	</action>
+	
+ 	
+	<testcase name="TestCase_String" action="sleepAction" >
+		<preparedataset>
+			<preparedata storekey="redisAAA">
+				<dataset>
+				    <String>				    	
+					    <row key="aaa" value="hello world"/>
+					    <row key="bbb" value="hello world"/>
+					    <!-- key=ccc& -->
+					    <row key="ccc&amp;" value="hello world"/>
+					    <row key="ddd"/>
+				    </String>
+				</dataset>
+			</preparedata>			
+		</preparedataset>
+		<resultdataset>
+			<resultdata storekey="redisAAA">
+				<dataset>
+					 <String>				    	
+					    <row key="aaa" value="hello world"/>
+					    <row key="bbb" value="hello world"/>
+					    <!-- key=ccc& -->
+					    <row key="ccc&amp;" value="hello world"/>
+					    <row key="ddd"/>
+				    </String>
+				</dataset>
+			</resultdata>
+		</resultdataset>
+	</testcase>
+	
+	
+	<testcase name="TestCase_List" action="sleepAction" >
+		<preparedataset>
+			<preparedata storekey="redisAAA">
+				<dataset>
+				    <List>				    	
+					    <row key="alist" value="hello world"/>
+					    <row key="alist" value="hello world"/>
+					    <row key="alist" value="hello world"/>
+					    <row key="blist" />
+				    </List>
+				</dataset>
+			</preparedata>			
+		</preparedataset>
+		<resultdataset>
+			<resultdata storekey="redisAAA">
+				<dataset>
+					 <List>				    	
+					    <row key="alist" value="hello world"/>
+					    <row key="alist" value="hello world"/>
+					    <row key="alist" value="hello world"/>
+					    <row key="blist" />
+				    </List>
+				</dataset>
+			</resultdata>
+		</resultdataset>
+	</testcase>
+	
+	
+	<testcase name="TestCase_Set" action="sleepAction" >
+		<preparedataset>
+			<preparedata storekey="redisAAA">
+				<dataset>
+				    <Set>				    	
+					    <row key="aset" value="hello world"/>
+					    <row key="aset" value="hello world"/>
+					    <row key="aset" value="hello world"/>
+					    <row key="bset" />
+				    </Set>
+				</dataset>
+			</preparedata>			
+		</preparedataset>
+		<resultdataset>
+			<resultdata storekey="redisAAA">
+				<dataset>
+					 <Set>				    	
+					    <row key="aset" value="hello world"/>
+					    <row key="aset" value="hello world"/>
+					    <row key="aset" value="hello world"/>
+					    <row key="bset" />
+				    </Set>
+				</dataset>
+			</resultdata>
+		</resultdataset>
+	</testcase>
+	
+	
+	<testcase name="TestCase_Hash" action="sleepAction" >
+		<preparedataset>
+			<preparedata storekey="redisAAA">
+				<dataset>
+				    <Hash>
+				    	<!-- text内容优先于属性value内容，作为存储到redis的数值 -->
+					    <row key="ahashkey"  field="a" value="hello world">hello world11</row>
+					    <row key="ahashkey"  field="b" value="hello world"/>
+					    <row key="ahashkey"  field="c" value="hello world"/>
+					    <row key="bhashkey" />
+				    </Hash>
+				</dataset>
+			</preparedata>			
+		</preparedataset>
+		<resultdataset>
+			<resultdata storekey="redisAAA">
+				<dataset>
+					 <Hash>				    	
+					    <row key="ahashkey"  field="a" value="hello world11"/>
+					    <row key="ahashkey"  field="b" value="hello world"/>
+					    <row key="ahashkey"  field="c" value="hello world"/>
+					    <row key="bhashkey"  />
+				    </Hash>
+				</dataset>
+			</resultdata>
+		</resultdataset>
+	</testcase>
+</testfun>

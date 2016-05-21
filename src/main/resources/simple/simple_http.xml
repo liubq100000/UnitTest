@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testfun>
+	
+   <action name="postJsonAction" class="com.dangdang.unit.keeper.action.http.HttpApplicationJsonPostAction">
+   		<param>
+			<request>
+				<url>http://127.0.0.1:8080/resteasy/rest/userservice/add</url>				
+				<body>
+					<content>{"name":"linda","code":"623425","mail":"163242@ms.com","age":23,"sex":"female"}</content>
+				</body>
+			</request>
+			<response validby="com.dangdang.unit.keeper.verification.JSONVerifier">
+				<![CDATA[   
+				{"errCode":"0"}
+				]]>		
+			</response>
+		</param>
+	</action>
+	
+	<action name="postXmlAction" class="com.dangdang.unit.keeper.action.http.HttpApplicationXmlPostAction">
+   		<param>
+			<request>
+				<url>http://127.0.0.1:8080/resteasy/rest/userservice/addbyxml</url>				
+				<body>
+					<content>
+					<![CDATA[
+					<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+					<User>
+					    <name>linda</name>
+					    <code>623425</code>
+					    <mail>163242@ms.com</mail>
+					    <age>23</age>
+					    <sex>female</sex>
+					</User>
+					]]>
+					</content>
+				</body>
+			</request>
+			<response validby="com.dangdang.unit.keeper.verification.XMLVerifier">
+				<![CDATA[   
+				<ReturnObject>
+				    <errCode>0</errCode>
+				</ReturnObject>
+				]]>		
+			</response>
+		</param>
+	</action>
+	
+	<action name="getXmlAction" class="com.dangdang.unit.keeper.action.http.HttpGetAction">
+   		<param>
+			<request>
+				<url>http://127.0.0.1:8080/resteasy/rest/userservice/users2</url>
+			</request>
+			<response validby="com.dangdang.unit.keeper.verification.XMLVerifier">
+				<![CDATA[  
+				<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+				<User>
+				    <name>linda</name>
+				    <code>623423</code>
+				    <mail>163242@ms.com</mail>
+				    <age>23</age>
+				    <sex>female</sex>
+				</User>
+				]]>		
+			</response>
+		</param>
+	</action>
+	
+	<action name="getJsonAction" class="com.dangdang.unit.keeper.action.http.HttpGetAction">
+   		<param>
+			<request>
+				<url>http://127.0.0.1:8080/resteasy/rest/userservice/users</url>
+			</request>
+			<response validby="com.dangdang.unit.keeper.verification.JSONVerifier">
+				<![CDATA[   
+				[{"name":"linda","code":"623423","mail":"163242@ms.com","age":23,"sex":"female"},{"name":"nokka","code":"973423","mail":"1fddf2@ms.com","age":23,"sex":"female"},{"name":"veppa","code":"734423","mail":"7d3242@ms.com","age":21,"sex":"male"}]
+				]]>		
+			</response>
+		</param>
+	</action>
+	
+	<testcase name="TestCase_Get_Json" action="getJsonAction"/>
+	<testcase name="TestCase_Get_Xml" action="getXmlAction"/>
+	<testcase name="TestCase_Post_Json" action="postJsonAction"/>
+	<testcase name="TestCase_Post_Xml" action="postXmlAction"/>
+</testfun>

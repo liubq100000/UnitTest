@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--目标功能完整的全部测试用例 -->
+<testfun>
+	<!-- 准备完数据后休眠1s的时间 -->
+	<action name="sleepAction" class="com.dangdang.unit.keeper.action.sleep.SleepAction">
+		<param>1000</param>
+	</action>
+	
+	<!-- 完整的一个测试用例 -->
+	<testcase name="TestCase1" action="sleepAction">
+		<!-- 准备数据，会把数据插入到响应的库中，注意插入前会先清除表的数据，务必慎重 -->
+		<preparedataset>
+			<!-- 数据存储关键字，系统通过这个找到对应库 -->
+			<preparedata storekey="testdb">
+				<dataset>
+					<!-- test_table_0 表名, tid0等为属性名-->
+				    <test_table_0>
+					    <row tid0="1" cname0="测试1" iage0="31" last_changed_date="[now()]"/>
+					    <row tid0="2" cname0="测试2" last_changed_date="2016-01-01 12:00:00"/>
+				    </test_table_0>
+				</dataset>
+			</preparedata>			
+		</preparedataset>
+		<!-- 对比数据库数据和期望数据是否一致 -->
+		<resultdataset>		
+			<resultdata storekey="testdb"  >			
+				<dataset>
+					<!-- orderby 排序，excludedcolumn 不进行对比的列-->
+				    <test_table_0 orderby="tid0 desc" excludedcolumn="last_changed_date" >
+					    <row tid0="2" cname0="测试2" last_changed_date="[now()]"/>
+					    <row tid0="1" cname0="测试1" last_changed_date="[now()]"/>
+				    </test_table_0>
+				</dataset>
+			</resultdata>
+		</resultdataset>
+	</testcase>
+</testfun>

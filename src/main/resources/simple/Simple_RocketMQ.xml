@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testfun>
+	<action name="sleepAction" class="com.dangdang.unit.keeper.action.sleep.SleepAction">
+		<param>100</param>
+	</action>
+	<!-- 正常情况 -->
+   <testcase name="TEST" action="sleepAction" >
+   		<preparedataset>
+			<preparedata storekey="rocketMQ">
+				<dataset>
+				    <producer>
+					    <row group="ProducerGroupName1" instanceName="PPP1" topic="TTT1" tags="tag1">123</row>
+					    <row group="ProducerGroupName2" instanceName="PPP2" topic="TTT1" tags="tag2">456</row>
+				    </producer>
+				</dataset>
+			</preparedata>			
+		</preparedataset>
+		<resultdataset>
+			<resultdata storekey="rocketMQ">
+				<dataset>
+				    <consumer>
+					    <row group="ConsumerGroupName3" instanceName="CCC3" topic="TTT1" tags="tag1||tag2">123</row>
+					    <row group="ConsumerGroupName3" instanceName="CCC3" topic="TTT1" tags="tag1||tag2">456</row>
+				    </consumer>
+				</dataset>
+			</resultdata>
+		</resultdataset>
+	</testcase>
+</testfun>
